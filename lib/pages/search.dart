@@ -48,7 +48,7 @@ class _SearchPageState extends State<SearchPage> {
         ],
       ),
       body: Container(
-          color: Color(0xffdddddd),
+          color: Color(0xfff4f4f4),
           // margin: EdgeInsets.only(left: 5.0, right: 5.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -58,11 +58,12 @@ class _SearchPageState extends State<SearchPage> {
                 padding: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 8.0),
                 alignment: Alignment.bottomLeft,
                 decoration: BoxDecoration(
-                  color: Color(0xffdddddd),
-                ),
+                    // color: Color(0xffdddddd),
+                    ),
                 child: Text(
                   '主题选择',
-                  style: TextStyle(color: Colors.grey),
+                  style: TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.w300),
                 ),
               ),
               Container(

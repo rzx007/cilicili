@@ -2,10 +2,32 @@ import 'package:flutter/material.dart';
 import 'package:cilicili/utils/MaterialColor.dart';
 import 'dart:io'; //提供Platform接口
 import 'package:flutter/services.dart'; //提供SystemUiOverlayStyle
-import 'package:cilicili/home.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:local_cache_sync/local_cache_sync.dart';
 
-void main() {
-  runApp(MyApp());
+import 'package:cilicili/home.dart';
+import 'package:cilicili/pages/profile/theme.dart';
+
+import 'package:cilicili/model/ThemeClass.dart';
+import 'package:cilicili/store/storage.dart';
+import 'package:provider/provider.dart';
+import 'package:cilicili/store/theme_provider.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  LocalCacheSync.instance.setCachePath(
+    await getTemporaryDirectory(),
+    'ClicliApp/',
+  );
+  int themeIndex = getThemeIndex("ThemeIndex"); //本地存储读取主题索引
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemePickerProvider()),
+      ],
+      child: ClicliApp(themeIndex),
+    ),
+  );
   if (Platform.isAndroid) {
     // 以下两行 设置android状态栏为透明的沉浸。写在组件渲染之后，是为了在渲染后进行set赋值，覆盖状态栏，写在渲染之前       MaterialApp组件会覆盖掉这个值。
     SystemUiOverlayStyle systemUiOverlayStyle =
@@ -14,14 +36,21 @@ void main() {
   }
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class ClicliApp extends StatelessWidget {
+  ClicliApp(this.themeIndex);
+  final int themeIndex;
   @override
   Widget build(BuildContext context) {
+    ThemePickerProvider themePicker = Provider.of<ThemePickerProvider>(context);
+    int i =
+        themePicker.themeIndex == null ? themeIndex : themePicker.themeIndex;
+    print('主题：$themeIndex');
     return MaterialApp(
       title: 'CliCili',
       theme: ThemeData(
-        primarySwatch: createMaterialColor(Color(0xFF9c28b1)),
+        primarySwatch:
+            createMaterialColor(AppTheme.themeColor[i]['primaryColor']),
+        iconTheme: IconThemeData(color: AppTheme.themeColor[i]['primaryColor']),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
@@ -31,16 +60,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -54,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Text('频道'),
     Text('动态'),
     Text('会员购'),
-    Text('我的')
+    ThemeSetPage()
   ];
   final List<String> tabs = ["首页", "频道", "动态", "会员购", "我的"];
   final List icons = [0xe69b, 0xe6ec, 0xe699, 0xe6e3, 0xe6a0];
@@ -82,6 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget tabbar(int index) {
+    int themeIndex = getThemeIndex("ThemeIndex"); //本地存储读取主题索引
+    ThemePickerProvider themePicker = Provider.of<ThemePickerProvider>(context);
+    int i =
+        themePicker.themeIndex == null ? themeIndex : themePicker.themeIndex;
     //设置默认未选中的状态
     Color color = Color(0xFF6a6b66);
     TextStyle style = TextStyle(
@@ -91,10 +114,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (_selectedIndex == index) {
       //选中的话
-      color = Color(0xFF9c28b1);
+      color = AppTheme.themeColor[i]['primaryColor'];
       style = TextStyle(
         fontSize: 13,
-        color: Color(0xFF9c28b1),
+        color: color,
         fontWeight: FontWeight.w600,
       );
     }

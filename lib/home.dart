@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cilicili/pages/search.dart';
+import 'package:cilicili/utils/GetThemeColor.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -8,7 +9,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  List tabs = ['语文', '英语', '化学', '物理', '数学', '生物', '体育', '经济'];
+  List tabs = ['直播', '推荐', '热门', '追剧', '影视', '说唱区', '抗击肺炎', '小康'];
   TabController _tabController; //需要定义一个Controller
   @override
   void initState() {
@@ -26,8 +27,9 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    print(ThemeColor.getColor(context)['primaryColor']);
     OutlineInputBorder inputStyle = OutlineInputBorder(
-        borderSide: BorderSide(color: Color(0xff9524a7)),
+        borderSide: BorderSide(color: Colors.transparent),
         borderRadius: BorderRadius.all(Radius.circular(100)));
     return Scaffold(
       backgroundColor: Colors.blueGrey[100],
@@ -51,13 +53,13 @@ class _HomePageState extends State<HomePage>
               child: TextField(
                 enabled: false,
                 decoration: InputDecoration(
-                  fillColor: Color(0xff9524a7),
+                  fillColor: Color(0x33000000),
                   filled: true,
                   contentPadding: EdgeInsets.all(0.0), //修改高度
                   enabledBorder: inputStyle,
                   hintText: '四大名著破亿啦！',
-                  hintStyle: TextStyle(color: Color(0xffad54bb)),
-                  prefixIcon: Icon(Icons.search, color: Color(0xffad54bb)),
+                  hintStyle: TextStyle(color: Color(0x33f2edf3)),
+                  prefixIcon: Icon(Icons.search, color: Color(0x33f2edf3)),
                   focusedBorder: inputStyle,
                   disabledBorder: inputStyle,
                 ),
@@ -80,7 +82,7 @@ class _HomePageState extends State<HomePage>
             height: 40,
             child: TabBar(
                 isScrollable: true,
-                indicatorColor: Color(0xff7e3e88),
+                // indicatorColor: ThemeColor.getColor(context)['primaryColor'],
                 indicatorWeight: 3.0,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelStyle:
@@ -88,7 +90,7 @@ class _HomePageState extends State<HomePage>
                 unselectedLabelStyle:
                     TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
                 unselectedLabelColor: Color(0xFF6a6b66),
-                labelColor: Color(0xff7e3e88),
+                labelColor: ThemeColor.getColor(context)['primaryColor'],
 
                 //生成Tab菜单R
                 controller: _tabController,
