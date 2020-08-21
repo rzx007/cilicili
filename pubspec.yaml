@@ -32,6 +32,8 @@ dependencies:
   shared_preferences: ^0.5.8  # 本地存储
   path_provider: ^1.4.5
   local_cache_sync: ^1.2.0 # 同步存储
+  flutter_swiper: ^1.1.6 # swiper
+  flutter_screenutil: ^2.3.1 # flutter 屏幕适配方案
   
 
 dev_dependencies:

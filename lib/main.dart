@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:local_cache_sync/local_cache_sync.dart';
 
 import 'package:cilicili/home.dart';
+import 'package:cilicili/channel.dart';
 import 'package:cilicili/pages/profile/theme.dart';
 
 import 'package:cilicili/model/ThemeClass.dart';
@@ -46,6 +47,7 @@ class ClicliApp extends StatelessWidget {
         themePicker.themeIndex == null ? themeIndex : themePicker.themeIndex;
     print('主题：$themeIndex');
     return MaterialApp(
+      // debugShowCheckedModeBanner: false,
       title: 'CliCili',
       theme: ThemeData(
         primarySwatch:
@@ -70,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   final List<Widget> views = [
     HomePage(),
-    Text('频道'),
+    ChannelPage(),
     Text('动态'),
     Text('会员购'),
     ThemeSetPage()

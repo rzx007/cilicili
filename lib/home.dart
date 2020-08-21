@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cilicili/pages/search.dart';
 import 'package:cilicili/utils/GetThemeColor.dart';
+import 'package:cilicili/pages/home/recommend.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +11,16 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   List tabs = ['直播', '推荐', '热门', '追剧', '影视', '说唱区', '抗击肺炎', '小康'];
+  List<Widget> pages = [
+    RecommendPage(),
+    Text('test'),
+    Text('test'),
+    Text('test'),
+    Text('test'),
+    Text('test'),
+    Text('test'),
+    Text('test'),
+  ];
   TabController _tabController; //需要定义一个Controller
   @override
   void initState() {
@@ -32,7 +43,7 @@ class _HomePageState extends State<HomePage>
         borderSide: BorderSide(color: Colors.transparent),
         borderRadius: BorderRadius.all(Radius.circular(100)));
     return Scaffold(
-      backgroundColor: Colors.blueGrey[100],
+      backgroundColor: Color(0xFFF4F4F4),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: Container(
@@ -104,10 +115,8 @@ class _HomePageState extends State<HomePage>
       ),
       body: TabBarView(
         controller: _tabController,
-        children: tabs.map((f) {
-          return Center(
-            child: Text(f),
-          );
+        children: pages.map((f) {
+          return f;
         }).toList(),
       ),
       floatingActionButton: FloatingActionButton(
