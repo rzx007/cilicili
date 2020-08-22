@@ -34,6 +34,7 @@ dependencies:
   local_cache_sync: ^1.2.0 # 同步存储
   flutter_swiper: ^1.1.6 # swiper
   flutter_screenutil: ^2.3.1 # flutter 屏幕适配方案
+  flutter_svg: ^0.18.1 #svg
   
 
 dev_dependencies:
@@ -54,6 +55,17 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/assets/avatar.png
+    - lib/assets/svgs/bilibili_donghuaico.svg
+    - lib/assets/svgs/bilibili_fanjuico.svg
+    - lib/assets/svgs/bilibili_guochuangico.svg
+    - lib/assets/svgs/bilibili_mamhuaico.svg
+    - lib/assets/svgs/bilibili_misicico.svg
+    - lib/assets/svgs/bilibili_gameico.svg
+    - lib/assets/svgs/bilibili_zhuanlanico.svg
+    - lib/assets/svgs/bilibili_danceico.svg
+    - lib/assets/svgs/bilibili_tuiguangico.svg
+    - lib/assets/svgs/bilibili_blackhouseico.svg
+    - lib/assets/svgs/bilibili_musicplusico.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

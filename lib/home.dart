@@ -12,8 +12,8 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   List tabs = ['直播', '推荐', '热门', '追剧', '影视', '说唱区', '抗击肺炎', '小康'];
   List<Widget> pages = [
-    RecommendPage(),
     Text('test'),
+    RecommendPage(),
     Text('test'),
     Text('test'),
     Text('test'),
@@ -26,7 +26,9 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     // 创建Controller
-    _tabController = new TabController(length: tabs.length, vsync: this);
+    _tabController =
+        new TabController(initialIndex: 1, length: tabs.length, vsync: this);
+    // _tabController.animateTo(0);
     // 监听tabs的切换
     _tabController.addListener(() {
       var index = _tabController.index;

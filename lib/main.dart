@@ -7,6 +7,7 @@ import 'package:local_cache_sync/local_cache_sync.dart';
 
 import 'package:cilicili/home.dart';
 import 'package:cilicili/channel.dart';
+import 'package:cilicili/news.dart';
 import 'package:cilicili/pages/profile/theme.dart';
 
 import 'package:cilicili/model/ThemeClass.dart';
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Widget> views = [
     HomePage(),
     ChannelPage(),
-    Text('动态'),
+    NewsPage(),
     Text('会员购'),
     ThemeSetPage()
   ];

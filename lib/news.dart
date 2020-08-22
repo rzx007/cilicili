@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:cilicili/pages/channel/channel_list.dart';
 import 'package:cilicili/utils/GetThemeColor.dart';
 
-class ChannelPage extends StatefulWidget {
+class NewsPage extends StatefulWidget {
   @override
-  _ChannelPageState createState() => _ChannelPageState();
+  _NewsPageState createState() => _NewsPageState();
 }
 
-class _ChannelPageState extends State<ChannelPage>
+class _NewsPageState extends State<NewsPage>
     with SingleTickerProviderStateMixin {
-  List tabs = ['频道', '分区'];
+  List tabs = ['视频', '综合'];
   List<Widget> pages = [Text('test'), ChannelListPage()];
   TabController _tabController; //需要定义一个Controller
   @override
