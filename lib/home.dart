@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage>
             height: 40,
             child: TabBar(
                 isScrollable: true,
-                // indicatorColor: ThemeColor.getColor(context)['primaryColor'],
+                indicatorColor: ThemeColor.getColor(context)['primaryColor'],
                 indicatorWeight: 3.0,
                 indicatorSize: TabBarIndicatorSize.label,
                 labelStyle:
@@ -130,3 +130,5 @@ class _HomePageState extends State<HomePage>
 
   void _onAdd() {}
 }
+
+//  首页吸附 https://www.cnblogs.com/mengqd/p/12847528.html

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cilicili/pages/search.dart';
 import 'package:cilicili/components/swiperItem.dart';
 import 'package:cilicili/components/listItem.dart';
+import 'package:cilicili/pages/playPage2.dart';
 
 class RecommendPage extends StatefulWidget {
   RecommendPage({Key key}) : super(key: key);
@@ -15,7 +15,7 @@ class _RecommendPageState extends State<RecommendPage> {
   Widget build(BuildContext context) {
     return ListView(
       physics: BouncingScrollPhysics(),
-      children: [SwiperItem(), ListItemView(jumpWiget: SearchPage())],
+      children: [SwiperItem(), ListItemView(jumpWiget: PlayPage())],
     );
   }
 }
