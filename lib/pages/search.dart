@@ -12,7 +12,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false, // 取消返回图标(<)
         title: Container(
           alignment: Alignment.center,
           height: 38,

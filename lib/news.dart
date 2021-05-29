@@ -1,3 +1,11 @@
+/*
+ * @Author: rzx007
+ * @Date: 2020-08-22 13:09:49
+ * @LastEditors: rzx007
+ * @LastEditTime: 2021-05-29 10:04:25
+ * @FilePath: \cilicili\lib\news.dart
+ * @Description: Do not edit
+ */
 import 'package:flutter/material.dart';
 import 'package:cilicili/pages/channel/channel_list.dart';
 import 'package:cilicili/utils/GetThemeColor.dart';
@@ -46,7 +54,6 @@ class _NewsPageState extends State<NewsPage>
                     TextStyle(fontWeight: FontWeight.w100, fontSize: 18),
                 unselectedLabelColor: Color(0xFFede8e8),
                 labelColor: Color(0xffffffff),
-
                 //生成Tab菜单R
                 controller: _tabController,
                 tabs: tabs

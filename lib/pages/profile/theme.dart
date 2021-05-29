@@ -8,7 +8,10 @@ class ThemeSetPage extends StatefulWidget {
 }
 
 class _ThemeSetPageState extends State<ThemeSetPage> {
+  int activeInde;
+
   void initState() {
+    activeInde = 0;
     super.initState();
     //初始化状态
     print("initState");
@@ -52,73 +55,75 @@ class _ThemeSetPageState extends State<ThemeSetPage> {
           )),
     );
   }
-}
 
-// 主题选择项
-_choiceTheme(context) {
-  List<Widget> themeArr = [];
-  List themeColor = AppTheme.themeColor;
-  for (var i = 0; i < themeColor.length; i++) {
-    themeArr.add(GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () {
-        ThemeColor.setColor(context, i);
-      },
-      child: Container(
-          height: 50.0,
-          margin: EdgeInsets.only(left: 10.0, right: 10.0),
-          padding:
-              EdgeInsets.only(left: 16.0, right: 16.0, top: 10.0, bottom: 10.0),
-          decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(color: Color(0xffdddddd), width: .7))),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                height: 16.0,
-                width: 16.0,
-                decoration: BoxDecoration(
-                  borderRadius: new BorderRadius.all(new Radius.circular(3.0)),
-                  color: themeColor[i]['primaryColor'],
+  // 主题选择项
+  List<Widget> _choiceTheme(context) {
+    List<Widget> themeArr = [];
+    List themeColor = AppTheme.themeColor;
+    for (var i = 0; i < themeColor.length; i++) {
+      themeArr.add(GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: () {
+          setState(() {
+            activeInde = i;
+          });
+          ThemeColor.setColor(context, i);
+        },
+        child: Container(
+            height: 50.0,
+            margin: EdgeInsets.only(left: 10.0, right: 10.0),
+            padding: EdgeInsets.only(
+                left: 16.0, right: 16.0, top: 10.0, bottom: 10.0),
+            decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(color: Color(0xffdddddd), width: .7))),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Container(
+                  height: 16.0,
+                  width: 16.0,
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        new BorderRadius.all(new Radius.circular(3.0)),
+                    color: themeColor[i]['primaryColor'],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(right: 6.0),
-              ),
-              Expanded(
-                child: new Text(
-                  themeColor[i]['colorName'],
-                  style: new TextStyle(fontSize: 14.0),
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.left,
-                  maxLines: 1,
+                Padding(
+                  padding: EdgeInsets.only(right: 6.0),
                 ),
-                flex: 1,
-              ),
-              _checked(i, context),
-              // new Icon(Icons.star, size: 16.0),
-            ],
-          )),
-    ));
+                Expanded(
+                  child: new Text(
+                    themeColor[i]['colorName'],
+                    style: new TextStyle(fontSize: 14.0),
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
+                    maxLines: 1,
+                  ),
+                  flex: 1,
+                ),
+                _checked(activeInde, i, context),
+                // new Icon(Icons.star, size: 16.0),
+              ],
+            )),
+      ));
+    }
+    return themeArr;
   }
-  return themeArr;
-}
 
-// 主题选中√标识
-Widget _checked(index, context) {
-  var _index = 0;
-  print('checked:$_index');
-  Widget content = new Text('');
-
-  if (index == _index) {
-    //如果数据不为空，则显示Text
-    content = new Icon(
-      Icons.check,
-      size: 16.0,
-      color: Colors.pink,
-    );
+  // 主题选中√标识
+  Widget _checked(activeInde, index, context) {
+    print('checked:$activeInde');
+    Widget content = new Text('');
+    if (index == activeInde) {
+      //如果数据不为空，则显示Text
+      content = new Icon(
+        Icons.check,
+        size: 16.0,
+        color: Colors.pink,
+      );
+    }
+    return content;
   }
-  return content;
 }

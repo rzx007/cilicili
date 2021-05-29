@@ -152,3 +152,14 @@ class _PlayPageState extends State<PlayPage>
     return Text('data');
   }
 }
+/*Text(
+                 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+                  softWrap: true,
+                  textAlign: TextAlign.left,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+                */
